@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gestion de Turnos - Restaurante</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"><\/script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"><\/script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"><\/script>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <div id="login-screen" class="screen">
+    <div class="login-card">
+      <div class="login-logo">&#127869;</div>
+      <h1>Gestion de Turnos</h1>
+      <p class="subtitle">Sistema de Turnos Restaurante</p>
+      <form id="login-form">
+        <div class="form-group">
+          <label>Usuario</label>
+          <input type="text" id="username" placeholder="Ingrese usuario" autocomplete="off"/>
+        </div>
+        <div class="form-group">
+          <label>Contrasena</label>
+          <input type="password" id="password" placeholder="Ingrese contrasena"/>
+        </div>
+        <div id="login-error" class="error-msg hidden">Usuario o contrasena incorrectos</div>
+        <button type="submit" class="btn-primary">Ingresar</button>
+      </form>
+    </div>
+  </div>
+  <div id="app-screen" class="screen hidden">
+    <header>
+      <div class="header-left">
+        <span class="logo">&#127869;</span>
+        <span class="app-title">Gestion de Turnos</span>
+      </div>
+      <div class="header-right">
+        <span id="welcome-msg"></span>
+        <button id="logout-btn" class="btn-logout">Salir</button>
+      </div>
+    </header>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="semana">Semana Siguiente</button>
+      <button class="tab-btn" data-tab="mes">Mes Siguiente</button>
+      <button class="tab-btn" data-tab="ver">Ver Turnos</button>
+    </nav>
+    <main>
+      <div id="tab-semana" class="tab-content active">
+        <div class="section-header">
+          <h2 id="semana-title">Turno - Semana Siguiente</h2>
+          <div class="section-actions">
+            <button class="btn-secondary" onclick="exportPDF('semana')">Exportar PDF</button>
+            <button class="btn-excel hidden" id="excel-semana" onclick="exportExcel('semana')">Exportar Excel</button>
+          </div>
+        </div>
+        <div id="semana-info" class="week-info"></div>
+        <div class="shift-grid" id="semana-grid"></div>
+        <div class="save-section">
+          <button class="btn-primary" onclick="saveTurno('semana')">Guardar Turno</button>
+        </div>
+      </div>
+      <div id="tab-mes" class="tab-content hidden">
+        <div class="section-header">
+          <h2 id="mes-title">Turno - Mes Siguiente</h2>
+          <div class="section-actions">
+            <button class="btn-secondary" onclick="exportPDF('mes')">Exportar PDF</button>
+            <button class="btn-excel hidden" id="excel-mes" onclick="exportExcel('mes')">Exportar Excel</button>
+          </div>
+        </div>
+        <div id="mes-info" class="month-info"></div>
+        <div class="shift-grid" id="mes-grid"></div>
+        <div class="save-section">
+          <button class="btn-primary" onclick="saveTurno('mes')">Guardar Turno</button>
+        </div>
+      </div>
+      <div id="tab-ver" class="tab-content hidden">
+        <div class="section-header">
+          <h2>Turnos Guardados</h2>
+        </div>
+        <div id="saved-turnos-list"></div>
+      </div>
+    </main>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"><\/script>
+</body>
+</html>
