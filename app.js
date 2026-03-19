@@ -36,11 +36,11 @@ const EMPLEADOS = {
     'Lucas Ignacio Hernandez',
     'Maria De Los Angeles Hidalgo',
     'Giovanni Andre Manterola',
-    'Nicole Lucia Tabilo'
   ],
   barra: [
     'Emily Gonzalez',
-    'Victor Manuel Villaparedes'
+    'Victor Manuel Villaparedes',
+    'Nicole Lucia Tabilo'
   ],
   admin: []
 };
